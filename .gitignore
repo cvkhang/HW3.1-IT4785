@@ -100,3 +100,7 @@ Thumbs.db
 *~
 .tags
 .tags_sorted_by_file
+
+# README - Keep local only
+README.md
+
