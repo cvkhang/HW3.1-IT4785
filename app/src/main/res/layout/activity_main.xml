@@ -1,108 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
-    android:background="#F5F5F5">
+    android:layout_height="match_parent">
 
-    <!-- Input cho Mã số sinh viên -->
-    <EditText
-        android:id="@+id/edtStudentId"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Mã số sinh viên"
-        android:inputType="text"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
-        android:paddingStart="4dp"
-        android:paddingEnd="4dp"
-        android:textSize="18sp"
-        android:textColor="#333333"
-        android:textColorHint="#AAAAAA"
-        android:background="@android:color/transparent"
-        android:layout_marginBottom="4dp" />
-
-    <!-- Đường kẻ dưới input MSSV -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#CCCCCC"
-        android:layout_marginBottom="20dp" />
-
-    <!-- Input cho Họ tên -->
-    <EditText
-        android:id="@+id/edtStudentName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Họ tên"
-        android:inputType="textPersonName"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
-        android:paddingStart="4dp"
-        android:paddingEnd="4dp"
-        android:textSize="18sp"
-        android:textColor="#333333"
-        android:textColorHint="#AAAAAA"
-        android:background="@android:color/transparent"
-        android:layout_marginBottom="4dp" />
-
-    <!-- Đường kẻ dưới input Họ tên -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#CCCCCC"
-        android:layout_marginBottom="16dp" />
-
-    <!-- Layout chứa 2 nút Add và Update -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="end"
-        android:layout_marginBottom="16dp">
-
-        <!-- Nút Add -->
-        <Button
-            android:id="@+id/btnAdd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Add"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            android:textAllCaps="false"
-            android:paddingStart="28dp"
-            android:paddingEnd="28dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:background="@drawable/button_background"
-            android:layout_marginEnd="8dp" />
-
-        <!-- Nút Update -->
-        <Button
-            android:id="@+id/btnUpdate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Update"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            android:textAllCaps="false"
-            android:paddingStart="28dp"
-            android:paddingEnd="28dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:background="@drawable/button_background" />
-
-    </LinearLayout>
-
-    <!-- RecyclerView hiển thị danh sách sinh viên -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewStudents"
-        android:layout_width="match_parent"
+    <!-- NavHostFragment chứa các Fragment -->
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="#FFFFFF"
-        android:scrollbars="vertical" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/nav_graph" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
