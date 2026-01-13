@@ -57,6 +57,11 @@ dependencies {
     // ViewModel and LiveData
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.livedata.ktx)
+
+    // Networking & Image Loading
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.glide)
     
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

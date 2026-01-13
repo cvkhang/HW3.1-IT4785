@@ -13,14 +13,6 @@
         tools:layout="@layout/fragment_student_list">
         
         <action
-            android:id="@+id/action_list_to_add"
-            app:destination="@id/addStudentFragment"
-            app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right"
-            app:popEnterAnim="@android:anim/slide_in_left"
-            app:popExitAnim="@android:anim/slide_out_right" />
-        
-        <action
             android:id="@+id/action_list_to_detail"
             app:destination="@id/studentDetailFragment"
             app:enterAnim="@android:anim/slide_in_left"
@@ -29,14 +21,7 @@
             app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
 
-    <!-- Fragment thêm sinh viên -->
-    <fragment
-        android:id="@+id/addStudentFragment"
-        android:name="com.example.quan_ly_sinh_vien.AddStudentFragment"
-        android:label="Thêm sinh viên"
-        tools:layout="@layout/fragment_add_student" />
-
-    <!-- Fragment chi tiết/cập nhật sinh viên -->
+    <!-- Fragment chi tiết sinh viên -->
     <fragment
         android:id="@+id/studentDetailFragment"
         android:name="com.example.quan_ly_sinh_vien.StudentDetailFragment"
@@ -44,8 +29,8 @@
         tools:layout="@layout/fragment_student_detail">
         
         <argument
-            android:name="studentId"
-            app:argType="string" />
+            android:name="student"
+            app:argType="com.example.quan_ly_sinh_vien.Student" />
     </fragment>
 
 </navigation>

@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -36,7 +35,7 @@ class StudentListFragment : Fragment() {
     super.onViewCreated(view, savedInstanceState)
 
     setupRecyclerView()
-    setupFabButton()
+    setupSearchView()
     observeViewModel()
   }
 
@@ -44,13 +43,12 @@ class StudentListFragment : Fragment() {
   private fun setupRecyclerView() {
     studentAdapter =
             StudentAdapter(
-                    students = viewModel.getStudents(),
+                    students = emptyList(),
                     onItemClick = { student ->
-                      // Navigate đến StudentDetailFragment với studentId
-                      val action = StudentListFragmentDirections.actionListToDetail(student.id)
+                      // Navigate đến StudentDetailFragment với student object
+                      val action = StudentListFragmentDirections.actionListToDetail(student)
                       findNavController().navigate(action)
-                    },
-                    onDeleteClick = { student -> showDeleteConfirmation(student) }
+                    }
             )
 
     binding.recyclerViewStudents.apply {
@@ -59,12 +57,21 @@ class StudentListFragment : Fragment() {
     }
   }
 
-  /** Thiết lập FAB button */
-  private fun setupFabButton() {
-    binding.fabAddStudent.setOnClickListener {
-      // Navigate đến AddStudentFragment
-      findNavController().navigate(R.id.action_list_to_add)
-    }
+  /** Thiết lập SearchView */
+  private fun setupSearchView() {
+    binding.searchView.setOnQueryTextListener(
+            object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
+              override fun onQueryTextSubmit(query: String?): Boolean {
+                viewModel.searchStudents(query ?: "")
+                return false
+              }
+
+              override fun onQueryTextChange(newText: String?): Boolean {
+                viewModel.searchStudents(newText ?: "")
+                return true
+              }
+            }
+    )
   }
 
   /** Quan sát thay đổi từ ViewModel */
@@ -72,16 +79,6 @@ class StudentListFragment : Fragment() {
     viewModel.students.observe(viewLifecycleOwner) { students ->
       studentAdapter.updateStudents(students)
     }
-  }
-
-  /** Hiển thị dialog xác nhận xóa */
-  private fun showDeleteConfirmation(student: Student) {
-    AlertDialog.Builder(requireContext())
-            .setTitle("Xác nhận xóa")
-            .setMessage("Bạn có chắc chắn muốn xóa sinh viên ${student.name}?")
-            .setPositiveButton("Xóa") { _, _ -> viewModel.removeStudent(student) }
-            .setNegativeButton("Hủy", null)
-            .show()
   }
 
   override fun onDestroyView() {

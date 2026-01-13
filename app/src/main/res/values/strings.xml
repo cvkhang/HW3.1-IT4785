@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">quan-ly-sinh-vien</string>
+    <string name="mssv_label">MSSV: %1$s</string>
 </resources>
